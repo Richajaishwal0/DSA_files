@@ -39,7 +39,7 @@
 	void show (struct stack* ptr){
 		int i;
 		for (i=ptr->top;i>=0;i--){
-			printf("%d ",ptr->arr[ptr->top]);
+			printf("%d ",ptr->arr[i]);
 		}
 		printf("\n");
 	}
