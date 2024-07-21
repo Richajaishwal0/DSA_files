@@ -2,28 +2,28 @@
 
 #include <stdlib.h>
 
-	struct stack {
+	struct Queue {
 		int size ;
 		int f;
 		int r;
 		int *arr;
 	};
 	
-int isEmpty(struct stack *s){
+int isEmpty(struct Queue *s){
 		if (s->f==s->r){
 			return 1;
 		}
 		return 0;
 		
 	}
-int isFull(struct stack *s){
+int isFull(struct Queue *s){
 		if (s->r==s->size-1){
 			return 1;
 		}
 		return 0;
 		
 	}
-	void enqueue(struct stack *s){
+	void enqueue(struct Queue *s){
 		if (!isFull(s)){
 			s->r++;
 			int a;
@@ -36,7 +36,7 @@ int isFull(struct stack *s){
 			printf("Stack overflow.\n");
 		}
 	}
-		void dequeue(struct stack *s){
+		void dequeue(struct Queue *s){
 		if (!isEmpty(s)){
 			s->f++;
 		printf("The dequeude element is %d\n",s->arr[s->f]);	
@@ -45,18 +45,18 @@ int isFull(struct stack *s){
 			printf("Stack underflow.\n");
 		}
 	}
-	void show(struct stack *s){
+	void show(struct Queue *s){
 		int i;
 		for (i=s->f+1;i<=s->r;i++){
 			printf("%d",s->arr[i]);
 		}
 		printf("\n");
 	}
-	void peek(struct stack *s){
+	void peek(struct Queue *s){
 		printf("%d",s->arr[s->r]);
 	}
 int main(){
-struct stack s;
+struct Queue s;
 s.size=10;
 s.f=-1;
 s.r=-1;
