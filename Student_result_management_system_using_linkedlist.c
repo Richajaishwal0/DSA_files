@@ -24,9 +24,6 @@ int isEmpty(struct node** head){
 }
 void storeDetails(struct node** head){
 		int i,n;
-	
-	
-
 		printf("Enter the number of students detail you want to insert: \n");
 		scanf("%d",&n);
 				for (i = 0; i < n; i++) {
@@ -79,6 +76,7 @@ void storeDetails(struct node** head){
 }
 
 void transversal(struct node* head){
+	if (!isEmpty(&head)){
 	struct node* ptr=head;
 printf("%s %-20s %-5s %-5s %-8s %-10s %-7s %-7s %-10s %-12s\n","S_NO"
        "Name", "Class", "Rollno", "Science", "Computer", "English", "Social","Total", "Percentage");
@@ -102,7 +100,10 @@ while (ptr != NULL) {
 }
 
 	}
-	
+
+else {
+	isEmpty(&head);
+}}
 
 void beg(struct node** head){
 //	struct node*ptr=(*head);
@@ -127,7 +128,6 @@ void beg(struct node** head){
 					
 						    printf("7. Social: ");
 						    scanf("%f", &s->Social);
-//							s->next=NULL;
 	s->next=(*head);
 (*head)=s;
 	
@@ -169,13 +169,23 @@ void mid(struct node ** head){
 	struct node* ptr=(*head);
 	struct node* q=(*head)->next;
 	struct node* s=(struct node*)malloc(sizeof(struct node));
+	if (s == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
 	int NO;
-	printf("Enter the rollno after which  you want to enter the data:\n ");
+	printf("Enter the rollno before which  you want to enter the data:\n ");
 	scanf("%d",&NO);
-	while (q->Rollno!=NO){
+	while ( ptr!=NULL && q->Rollno!=NO){
 		ptr=ptr->next;
 		q=q->next;
 	}
+	 if (ptr == NULL) {
+        printf("Roll number %d not found in the list.\n", NO);
+        free(s); 
+        return;
+    }
+        printf("Enter the details for the new node:\n");
 		printf("1. Name: ");
 						    scanf("%20s", &s->Name);
 						    
@@ -221,38 +231,43 @@ void insert(struct node** head){
 void beg_d(struct node** head){
 	struct node*ptr=(*head);
 	(*head)=(*head)->next;
+	printf("Deleted Successfully.\n");
 	free(ptr);
 }
 
 void mid_d(struct node** head){
-	int NO;
+	int n;
 	struct node*ptr=(*head);
 	struct node*q=NULL;
 	printf("Enter the rollno for which you want to delete  the data:\n ");
-	scanf("%d",&NO);
+	scanf("%d",&n);
 	
 	if (ptr == NULL) {
         printf("The list is empty.\n");
         return;
     }
     
-     if (ptr != NULL && ptr->Rollno == NO) {
+     if (ptr != NULL && ptr->Rollno == n) {
         *head = ptr->next;  
         free(ptr); 
+        return;
     }
         
-	while (ptr->Rollno!=NO && ptr!=NULL ){
+	while ( ptr!=NULL && ptr->Rollno!=n ){
 		q=ptr;
 		ptr=ptr->next;
 	}
-	q->next=ptr->next;
-	free(ptr);
 	
 	
 	if (ptr == NULL) {
-        printf("Roll number %d not found.\n", NO);
+        printf("Roll number %d not found.\n", n);
         return;
     }
+    
+    q->next = ptr->next;
+    free(ptr);
+    printf("Node with roll number %d deleted.\n", n);
+
 }
 
 void last_d(struct node** head){
@@ -264,6 +279,7 @@ void last_d(struct node** head){
 	}
 	ptr->next=NULL;
 	free(q);
+	 printf("Deleted. successfully\n", n);
 }
 void deletion(struct node**head){
 	int p;
