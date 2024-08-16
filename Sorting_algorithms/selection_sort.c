@@ -1,23 +1,23 @@
 #include <stdio.h>
 
-void bubble_sort(int arr[], int size)
+void selection_sort(int arr[], int size)
 {
-    int i, j, temp;
-
-    for (i = 0; i < size - 1; i++)
+    int i, j, min, temp;
+    for (i = 0; i < size; i++)
     {
-        for (j = 0; j < size - i - 1; j++)
+        min = i;
+        for (j = i + 1; j < size; j++)
         {
-            if (arr[j + 1] < arr[j])
+            if (arr[j] < arr[min])
             {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                min = j;
+                temp = arr[i];
+                arr[i] = arr[min];
+                arr[min] = temp;
             }
         }
     }
 }
-
 void print_array(int arr[], int size)
 {
     int i;
@@ -28,7 +28,6 @@ void print_array(int arr[], int size)
 }
 int main()
 {
-
     int size, i;
     printf("Enter the number of elements :");
     scanf("%d", &size);
@@ -38,7 +37,7 @@ int main()
     {
         scanf("%d", &arr[i]);
     }
-    bubble_sort(arr, size);
+    selection_sort(arr, size);
     print_array(arr, size);
     return 0;
 }
