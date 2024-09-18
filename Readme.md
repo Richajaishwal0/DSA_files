@@ -63,9 +63,9 @@ Check out the **Important_Problems.md** file for a handpicked collection of DSA 
 ## 🛠️ How to Use This Repository
 
 - Clone the repository:
-  \`\`\`bash
+ ```bash
  https://github.com/Richajaishwal0/DSA_files.git
-  \`\`\`
+```
 
 - Navigate to specific folders for the code and detailed explanations.
 
