@@ -1,5 +1,5 @@
 //check if the given binary tree is BST or not
-#include <stdio.h>
+#include <stdio.h
 #include <stdlib.h>
 struct node{
 	int data;
