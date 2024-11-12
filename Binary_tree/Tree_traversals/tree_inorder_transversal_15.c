@@ -7,14 +7,15 @@ struct node {
 	struct node * right;
 };
 
-void postorder(struct node * root){
+void inorder(struct node * root){
 	if (root==NULL){
 		return ;
 	}
 	else {
-		postorder(root->left);
-		postorder(root->right);
+		inorder(root->left);
 		printf("%d ",root->data);
+		inorder(root->right);
+		
 	}
 }
 
@@ -31,7 +32,7 @@ int main(){
 	root->left->left=newNode(4);
 	root->left->right=newNode(5);
 	printf("The element in the tree are:\n");
-	postorder(root);
+	inorder(root);
 	
 	return 0;
 }
